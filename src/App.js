@@ -3,6 +3,8 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import Typed from 'typed.js';
 import ScrollReveal from 'scrollreveal';
+import { db } from './Firebase';
+import { collection, addDoc } from "firebase/firestore";
 
 function App() {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -13,7 +15,7 @@ function App() {
     Email: false,
     Emailval: false,
     Mobile: false,
-    ValidMobile:false,
+    ValidMobile: false,
     Work: false,
     ValEmpty: false
   });
@@ -107,7 +109,7 @@ function App() {
     var Email = document.getElementById("Email").value;
     var Mobile = document.getElementById("Mobile").value;
     var Work = document.getElementById("Work").value;
-   // var ValidMobile= document.getElementById("ValidMobile").value;
+    // var ValidMobile= document.getElementById("ValidMobile").value;
 
     let errors = {
       Fullname: false,
@@ -116,7 +118,7 @@ function App() {
       Work: false,
       Emailval: false,
       ValEmpty: false,
-      ValidMobile:false
+      ValidMobile: false
     };
 
     if (!Fullname) {
@@ -146,27 +148,26 @@ function App() {
       errors.ValEmpty = true
       isValid = false;
     }
-    else if(Mobile && Mobile.trim().length > 0 ){
+    else if (Mobile && Mobile.trim().length > 0) {
       var phone = Mobile
-      var phoneNum = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/; 
-      if(phone.match(phoneNum)) {
-       errors.ValidMobile = false
+      var phoneNum = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+      if (phone.match(phoneNum)) {
+        errors.ValidMobile = false
         errors.ValEmpty = false
         isValid = true;
-      }else{
+      } else {
         errors.ValidMobile = true
         errors.ValEmpty = true
         isValid = false;
-        
+
       }
-    
+
     }
 
     if (isValid) {
       errors.ValEmpty = false
       setErrors({ ...errors });
-      var modal = document.getElementById("myModal");
-      modal.style.display = "block";
+      handleAddUser();
 
     } else {
       setErrors({ ...errors });
@@ -177,7 +178,41 @@ function App() {
   const Closedata = () => {
     var modal = document.getElementById("myModal");
     modal.style.display = "none";
+    document.getElementById("Fullname").value= "";
+    document.getElementById("Email").value= "";
+    document.getElementById("Mobile").value= "";
+    document.getElementById("Work").value= "";
+    document.getElementById("TextArea").value= "";
+  }
 
+  const handleAddUser = async () => {
+    let UserName = document.getElementById("Fullname").value;
+    let user = {}
+    user.Fullname = document.getElementById("Fullname").value;
+    user.Email = document.getElementById("Email").value;
+    user.Mobile = document.getElementById("Mobile").value;
+    user.Work = document.getElementById("Work").value;
+    user.TextArea = document.getElementById("TextArea").value;
+
+    try {
+
+      // Adds a new document with a generated ID
+      const docRef = await addDoc(collection(db, UserName), {
+        Reactportfolio: user,
+      });
+      // await addDoc(collection(db, "Portfolio"), {
+      //   text: JSON.stringify(user),
+      //   timestamp: new Date(),
+      //   uid: user.Email,
+      //   displayName: user.Fullname,
+      // });
+      console.log("Document written with ID: ", "");
+      var modal = document.getElementById("myModal");
+      modal.style.display = "block";
+
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
   }
 
   return (
@@ -474,7 +509,7 @@ function App() {
               <input autoComplete='off' id="Mobile" type="number" placeholder="Mobile Number" />
               <input autoComplete='off' id="Work" type="text" placeholder="Designation" />
             </div>
-            <textarea autoComplete='off' name id cols={30} rows={10} placeholder="Your Message" defaultValue={""} />
+            <textarea autoComplete='off' name id="TextArea" cols={30} rows={10} placeholder="Your Message" defaultValue={""} />
             {/* <input type="submit" defaultValue="Send Message" className="btn" onClick={datasaved()} /> */}
 
             {errors.ValEmpty && <div className="ErrMsgs">
