@@ -246,7 +246,7 @@ function App() {
               <a href="https://github.com/Mugunthan2903/"><i className="bx bxl-github" /></a>
 
             </div>
-            <a href="images/Mugunthan_Resume.pdf" download="Mugunthan_Resume.pdf" className="btn">Download CV</a>
+            <a href="images/Muguntha_Resume.pdf" download="Muguntha_Resume.pdf" className="btn">Download CV</a>
           </div>
           <div className="home-img">
             <img src="images/profile-pic 3.webp" style={{ height: "320px", borderRadius: "180px" }} />
