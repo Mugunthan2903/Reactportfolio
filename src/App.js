@@ -246,7 +246,7 @@ function App() {
               <a href="https://github.com/Mugunthan2903/"><i className="bx bxl-github" /></a>
 
             </div>
-            <a href="images/Muguntha_Resume.pdf" download="Muguntha_Resume.pdf" className="btn">Download CV</a>
+            <a href="images/Mugunthan_Resume.pdf" download="Mugunthan_Resume.pdf" className="btn">Download CV</a>
           </div>
           <div className="home-img">
             <img src="images/profile-pic 3.webp" style={{ height: "320px", borderRadius: "180px" }} />
@@ -260,7 +260,7 @@ function App() {
           <div className="about-content">
             <h2 className="heading">About <span>Me</span></h2>
             <h3>Junior Fullstack Developer!</h3>
-            <p style={{ margin: "1rem 0 1rem" }}> I am Full stack developer from Bangalore, India with 3 years of experience. Proficient in
+            <p style={{ margin: "1rem 0 1rem" }}> I am Full stack developer from Bangalore, India with 5 years of experience. Proficient in
               creating Web applications/ Mobile applications / data APIs.
               <p style={{ margin: "1rem 0 1rem" }}>Database : Mysql | Sql Server </p>
               <p style={{ margin: "1rem 0 1rem" }}>Backend : C# | Asp.Net core| Asp.Net Web Api | Rest Api </p>
@@ -393,7 +393,7 @@ function App() {
           <h2 className="heading">Experience & <span>Education</span></h2>
 
           <div style={{ width: "50%", float: "left" }}>
-            <h3 style={{ fontSize: "20px", color: "gray" }}>1. March 2022 - Present | 2.10 years</h3>
+            <h3 style={{ fontSize: "20px", color: "gray" }}>1. March 2022 - Present | 4.10 years</h3>
             <h1 style={{ fontSize: "15px", color: "cadetblue" }}> Full stack at Webstorm Information Technology</h1>
 
             <h2 style={{ fontSize: "20px", color: "goldenrod", marginBottom: "0rem", marginTop: "1rem" }}>Mobile App Development with React Native:</h2>
